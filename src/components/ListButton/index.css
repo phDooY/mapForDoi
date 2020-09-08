@@ -1,0 +1,6 @@
+.btn-info {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 10px;
+}
