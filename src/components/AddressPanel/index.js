@@ -15,20 +15,34 @@ class AddressPanal extends React.Component {
 
   createListPlace() {
     let arr = [];
-    let key = 0;
+    let places = this.props.dataPlace;
 
-    for (let place in this.props.dataPlace) {
+    for (let place in places) {
+      let storeInfo = places[place];
       arr.push(
-      <li key={++key}>{place}</li>
+      <li
+        key={storeInfo.id}
+        data-coord={storeInfo.coordinates}
+      >
+        <p>{place}</p>
+        <p>{storeInfo.address}</p>
+      </li>
       )
     }
-    this.setState(this.state.listPlace = arr);
+    this.setState({listPlace: arr});
   }
 
   closeList() {
     const sidebar = document.getElementById("sidebar");
 
     sidebar.classList.remove("active");
+  }
+
+  focusOnPlace(event) {
+    const target = event.target;
+    let coord = target.dataset.coord;
+    coord = coord.split(",");
+
   }
 
   componentDidMount() {
@@ -58,10 +72,4 @@ class AddressPanal extends React.Component {
   }
 }
 
-function mapStateToProps(store) {
-  return {
-    dataPlace: store.dataPlace,
-  }
-}
-
-export default connect(mapStateToProps)(AddressPanal);
+export default AddressPanal;

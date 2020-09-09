@@ -1,6 +1,5 @@
 import React from "react";
 import {YMaps, Map, Placemark, GeoObject} from 'react-yandex-maps';
-import {connect} from 'react-redux';
 
 import "./index.css";
 
@@ -11,7 +10,7 @@ class WrappedMap extends React.Component {
       listOfPlacemark: [],
       userCoor: [],
       errorCoor: "",
-      forMapState: false,
+      isUserLocationOn: false,
       coorForMapState: [],
     }
 
@@ -23,14 +22,14 @@ class WrappedMap extends React.Component {
 
   placeMarking() {
     const places = this.props.dataPlace;
-    let key = 0;
     let arr = [];
 
     for (let place in places) {
+      let storeInfo = places[place];
       arr.push(
         <Placemark
-          key={++key}
-          geometry={places[place]}
+          key={storeInfo.id}
+          geometry={storeInfo.coordinates}
           properties={{iconCaption: place}}
         />
       )
@@ -43,10 +42,9 @@ class WrappedMap extends React.Component {
       const options = {
         enableHighAccuracy: true,
         timeout: 30000,
-        maximumAge: 0
-
+        maximumAge: 0,
       }
-      // console.log(this)
+
       navigator.geolocation.watchPosition(this.gotPos, this.posFail, options);
 
     } else {
@@ -59,12 +57,15 @@ class WrappedMap extends React.Component {
     const lng = position.coords.longitude;
 
     // console.log(`${lat}, ${lng}`);
-    if (!this.state.forMapState) {
+    if (!this.state.isUserLocationOn) {
       this.setState({coorForMapState: [lat, lng]});
     }
 
-    this.setState({userCoor: [lat, lng],
-    forMapState: true});
+    this.setState({
+      userCoor: [lat, lng],
+      isUserLocationOn: true,
+    });
+    this.props.setMapCenter(this.state.coorForMapState)
   }
 
   posFail(err) {
@@ -82,17 +83,16 @@ class WrappedMap extends React.Component {
       listOfPlacemark,
       userCoor,
       errorCoor,
-      forMapState,
+      isUserLocationOn,
       coorForMapState,
     } = this.state;
-
     return (
       <YMaps>
         <div>
           <Map
             className="Map"
             defaultState={{center: [55.75, 37.57], zoom: 10 }}
-            state={forMapState ? {center: coorForMapState, zoom: 13} : {center: [55.75, 37.57], zoom: 10}}
+            state={this.props.stateForMap}
           >
             {listOfPlacemark.map((item) => item)}
             {errorCoor
@@ -114,10 +114,12 @@ class WrappedMap extends React.Component {
   }
 }
 
-function mapStateToProps(store) {
-  return {
-    dataPlace: store.dataPlace,
-  }
-}
+// function mapStateToProps(store) {
+//   return {
+//     dataPlace: store.dataPlace,
+//   }
+// }
 
-export default connect(mapStateToProps)(WrappedMap);
+// export default connect(mapStateToProps)(WrappedMap);
+
+export default WrappedMap;
