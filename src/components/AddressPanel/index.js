@@ -1,5 +1,5 @@
 import React from "react";
-import {connect} from 'react-redux';
+import {Placemark} from 'react-yandex-maps';
 
 import "./index.css";
 
@@ -8,9 +8,12 @@ class AddressPanal extends React.Component {
     super(props);
     this.state = {
       listPlace: [],
+      isActiveLi: false,
     }
+
     this.createListPlace = this.createListPlace.bind(this);
     this.closeList = this.closeList.bind(this);
+    this.focusOnPlace = this.focusOnPlace.bind(this);
   }
 
   createListPlace() {
@@ -22,7 +25,10 @@ class AddressPanal extends React.Component {
       arr.push(
       <li
         key={storeInfo.id}
+        className="list-group-item list-group-item-primary"
         data-coord={storeInfo.coordinates}
+        data-key={storeInfo.id}
+        data-caption={place}
       >
         <p>{place}</p>
         <p>{storeInfo.address}</p>
@@ -39,9 +45,55 @@ class AddressPanal extends React.Component {
   }
 
   focusOnPlace(event) {
-    const target = event.target;
+    const target = event.target.closest("li");
+
+    if (target.classList.contains("active")) {
+      this.setState({isActiveLi: false});
+      target.classList.remove("active");
+      //Это продублированный код из метода placeMarking() компонента WrappedMap.
+      //Было бы хорошо, как-то расшарить эту функцию для других компонентов.
+      const places = this.props.dataPlace;
+      let arr = [];
+
+      for (let place in places) {
+        let storeInfo = places[place];
+        arr.push(
+          <Placemark
+            key={storeInfo.id}
+            geometry={storeInfo.coordinates}
+            properties={{iconCaption: place}}
+          />
+        )
+      }
+      this.props.createPlacemarkStorage(arr);
+
+      return;
+    }
+
+    if (this.state.isActiveLi) {
+      const activeLi = document.querySelector("li.active");
+      activeLi.classList.remove("active");
+    }
+
+    this.setState({isActiveLi: true})
+
+    let key = target.dataset.key;
+    let caption = target.dataset.caption;
     let coord = target.dataset.coord;
+
     coord = coord.split(",");
+
+    this.props.setMapCenter(coord);
+
+    target.classList.add("active");
+
+    this.props.createPlacemarkStorage([
+      <Placemark
+        key={key}
+        geometry={coord}
+        properties={{iconCaption: caption}}
+      />
+    ])
 
   }
 
@@ -63,7 +115,10 @@ class AddressPanal extends React.Component {
             <h3>Список адресов</h3>
           </div>
 
-          <ul className="list-unstyled components">
+          <ul
+            className="list-group"
+            onClick={this.focusOnPlace}
+          >
             {this.state.listPlace.map((item) => item)}
           </ul>
         </nav>

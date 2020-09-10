@@ -21,7 +21,7 @@ class ListButton extends React.Component {
   render() {
     return (
       <Button
-        variant="info"
+        variant="primary"
         onClick={this.showList}>
         Список адресов
       </Button>

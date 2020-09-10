@@ -7,6 +7,7 @@ import ListButton from '../ListButton';
 import {render} from '@testing-library/react';
 import AddressPanel from '../AddressPanel';
 import {setMapCenter} from '../../actions/WrappedMapAction';
+import {createPlacemarkStorage} from '../../actions/MapAndPanelAction';
 
 
 class App extends React.Component {
@@ -14,7 +15,9 @@ class App extends React.Component {
     const {
       dataPlace,
       setMapCenterAction,
-      stateForMap
+      stateForMap,
+      placemarkStorage,
+      createPlacemarkStorage,
     } = this.props;
 
     return (
@@ -24,11 +27,15 @@ class App extends React.Component {
           dataPlace={dataPlace}
           setMapCenter={setMapCenterAction}
           stateForMap={stateForMap}
+          placemarkStorage={placemarkStorage}
+          createPlacemarkStorage={createPlacemarkStorage}
         />
         <WrappedMap
           dataPlace={dataPlace}
           setMapCenter={setMapCenterAction}
           stateForMap={stateForMap}
+          placemarkStorage={placemarkStorage}
+          createPlacemarkStorage={createPlacemarkStorage}
         />
       </div>
     );
@@ -39,12 +46,14 @@ function mapStateToProps(store) {
   return {
     dataPlace: store.dataPlace,
     stateForMap: store.stateForMap,
+    placemarkStorage: store.placemarkStorage,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     setMapCenterAction: (coord) => dispatch(setMapCenter(coord)),
+    createPlacemarkStorage: (arr) => dispatch(createPlacemarkStorage(arr)),
   }
 }
 

@@ -7,7 +7,6 @@ class WrappedMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listOfPlacemark: [],
       userCoor: [],
       errorCoor: "",
       isUserLocationOn: false,
@@ -34,7 +33,7 @@ class WrappedMap extends React.Component {
         />
       )
     }
-    this.setState({listOfPlacemark: arr});
+    this.props.createPlacemarkStorage(arr);
   }
 
   locate() {
@@ -59,13 +58,13 @@ class WrappedMap extends React.Component {
     // console.log(`${lat}, ${lng}`);
     if (!this.state.isUserLocationOn) {
       this.setState({coorForMapState: [lat, lng]});
+      this.props.setMapCenter(this.state.coorForMapState);
     }
 
     this.setState({
       userCoor: [lat, lng],
       isUserLocationOn: true,
     });
-    this.props.setMapCenter(this.state.coorForMapState)
   }
 
   posFail(err) {
@@ -80,7 +79,6 @@ class WrappedMap extends React.Component {
 
   render() {
     const {
-      listOfPlacemark,
       userCoor,
       errorCoor,
       isUserLocationOn,
@@ -94,7 +92,7 @@ class WrappedMap extends React.Component {
             defaultState={{center: [55.75, 37.57], zoom: 10 }}
             state={this.props.stateForMap}
           >
-            {listOfPlacemark.map((item) => item)}
+            {this.props.placemarkStorage.map((item) => item)}
             {errorCoor
               ? alert("К сожалению, Ваша геолокация не определилась")
               : <GeoObject

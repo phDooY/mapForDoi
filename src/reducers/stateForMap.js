@@ -8,7 +8,7 @@ const initialSate = {
 export default function stateForMap(state = initialSate, action) {
   switch (action.type) {
     case SET_MAP_CENTER:
-      return {...state, center: action.payload, zoom: 13};
+      return {...state, center: action.payload, zoom: 14};
 
     default:
       return state;

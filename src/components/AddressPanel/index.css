@@ -18,12 +18,7 @@
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #6d7fcc;
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #47748b;
+  background: #007bff;
 }
 
 #dismiss {
@@ -48,4 +43,18 @@
 #dismiss:hover {
   background: #fff;
   color: #7386D5;
+}
+
+li.list-group-item-primary:hover {
+  cursor: pointer;
+  background: #ebebeb;
+  transition: all 0.3s;
+}
+
+li.active:hover {
+  color: #004085;
+}
+
+li.active {
+  transition: all 0.3s;
 }
