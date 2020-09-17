@@ -1,5 +1,5 @@
 import React from "react";
-import {YMaps, Map, Placemark, GeoObject} from 'react-yandex-maps';
+import {YMaps, Map, Placemark, GeoObject, Clusterer} from 'react-yandex-maps';
 
 import "./index.css";
 
@@ -27,9 +27,16 @@ class WrappedMap extends React.Component {
       let storeInfo = places[place];
       arr.push(
         <Placemark
+          modules={["geoObject.addon.balloon"]}
           key={storeInfo.id}
           geometry={storeInfo.coordinates}
-          properties={{iconCaption: place}}
+          properties={{
+            iconCaption: place,
+            balloonContentHeader: `${place}<br />
+            <img src=${storeInfo.img_100x100} />`,
+            balloonContentBody: storeInfo.description,
+            balloonContentFooter: `${storeInfo.address}<br /><b>${storeInfo.openingHours}</b>`,
+          }}
         />
       )
     }
@@ -81,8 +88,8 @@ class WrappedMap extends React.Component {
     const {
       userCoor,
       errorCoor,
-      isUserLocationOn,
-      coorForMapState,
+      // isUserLocationOn,
+      // coorForMapState,
     } = this.state;
     return (
       <YMaps>
@@ -92,7 +99,16 @@ class WrappedMap extends React.Component {
             defaultState={{center: [55.75, 37.57], zoom: 10 }}
             state={this.props.stateForMap}
           >
-            {this.props.placemarkStorage.map((item) => item)}
+            <Clusterer
+            options={{
+              groupByCoordinates: false,
+              clusterDisableClickZoom: true,
+              clusterHideIconOnBalloonOpen: false,
+              geoObjectHideIconOnBalloonOpen: false
+            }}
+            >
+              {this.props.placemarkStorage.map((item) => item)}
+            </Clusterer>
             {errorCoor
               ? alert("К сожалению, Ваша геолокация не определилась")
               : <GeoObject

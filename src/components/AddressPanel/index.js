@@ -29,6 +29,10 @@ class AddressPanal extends React.Component {
         data-coord={storeInfo.coordinates}
         data-key={storeInfo.id}
         data-caption={place}
+        data-address={storeInfo.address}
+        data-openinghours={storeInfo.openingHours}
+        data-description={storeInfo.description}
+        data-img_100x100={storeInfo.img_100x100}
       >
         <p>{place}</p>
         <p>{storeInfo.address}</p>
@@ -59,9 +63,15 @@ class AddressPanal extends React.Component {
         let storeInfo = places[place];
         arr.push(
           <Placemark
+            modules={["geoObject.addon.balloon"]}
             key={storeInfo.id}
             geometry={storeInfo.coordinates}
-            properties={{iconCaption: place}}
+            properties={{
+              iconCaption: place,
+              balloonContentHeader: `${place}<br /><img src=${storeInfo.img_100x100} />`,
+              balloonContentBody: storeInfo.description,
+              balloonContentFooter: `${storeInfo.address}<br /><b>${storeInfo.openingHours}</b>`,
+            }}
           />
         )
       }
@@ -77,10 +87,14 @@ class AddressPanal extends React.Component {
 
     this.setState({isActiveLi: true})
 
-    let key = target.dataset.key;
-    let caption = target.dataset.caption;
-    let coord = target.dataset.coord;
+    const key = target.dataset.key;
+    const caption = target.dataset.caption;
+    const address = target.dataset.address;
+    const openingHours = target.dataset.openinghours;
+    const description = target.dataset.description;
+    const img_100x100 = target.dataset.img_100x100;
 
+    let coord = target.dataset.coord;
     coord = coord.split(",");
 
     this.props.setMapCenter(coord);
@@ -89,9 +103,15 @@ class AddressPanal extends React.Component {
 
     this.props.createPlacemarkStorage([
       <Placemark
+        modules={["geoObject.addon.balloon"]}
         key={key}
         geometry={coord}
-        properties={{iconCaption: caption}}
+        properties={{
+          iconCaption: caption,
+          balloonContentHeader: `${caption}<br /><img src=${img_100x100} />`,
+          balloonContentBody: description,
+          balloonContentFooter: `${address}<br /><b>${openingHours}</b>`,
+        }}
       />
     ])
 
@@ -117,7 +137,7 @@ class AddressPanal extends React.Component {
 
           <ul
             className="list-group"
-            onClick={this.focusOnPlace}
+            onMouseDown={this.focusOnPlace}
           >
             {this.state.listPlace.map((item) => item)}
           </ul>

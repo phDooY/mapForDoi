@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 import "./index.css";
 import WrappedMap from '../WrappedMap';
 import ListButton from '../ListButton';
-import {render} from '@testing-library/react';
+// import {render} from '@testing-library/react';
 import AddressPanel from '../AddressPanel';
 import {setMapCenter} from '../../actions/WrappedMapAction';
 import {createPlacemarkStorage} from '../../actions/MapAndPanelAction';
+// import Portal from '../Portal';
 
 
 class App extends React.Component {
@@ -37,6 +38,9 @@ class App extends React.Component {
           placemarkStorage={placemarkStorage}
           createPlacemarkStorage={createPlacemarkStorage}
         />
+        {/* <Portal
+          dataPlace={dataPlace}
+        /> */}
       </div>
     );
   }
