@@ -31,7 +31,7 @@ class InfoPanel extends React.Component {
 
           <img id="imgForPanel" src="./img/jpg/Doi.jpg" alt="store" />
           <figcaption>
-          <address id="addressForPanel">address 12 3232 5545</address>
+          <address id="addressForPanel" hidden>address 12 3232 5545</address>
             <h1 id="nameForPanel">Name</h1>
             <h3 id="openingHoursForPanel">openingHours</h3>
           </figcaption>

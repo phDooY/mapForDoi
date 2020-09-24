@@ -82,6 +82,7 @@ class WrappedMap extends React.Component {
       <YMaps>
         <div>
           <Map
+            modules={["control.ZoomControl", "control.FullscreenControl"]}
             className="Map"
             defaultState={{center: [55.75, 37.57], zoom: 10 }}
             state={this.props.stateForMap}
@@ -89,9 +90,10 @@ class WrappedMap extends React.Component {
             <Clusterer
             options={{
               groupByCoordinates: false,
-              clusterDisableClickZoom: true,
               clusterHideIconOnBalloonOpen: false,
-              geoObjectHideIconOnBalloonOpen: false
+              geoObjectHideIconOnBalloonOpen: false,
+              minClusterSize: 3,
+              zoomMargin: 100,
             }}
             >
               {this.props.placemarkStorage.map((item) => item)}
