@@ -1,5 +1,7 @@
 import React from "react";
-import {YMaps, Map, Placemark, GeoObject, Clusterer} from 'react-yandex-maps';
+import {YMaps, Map, GeoObject, Clusterer} from 'react-yandex-maps';
+
+import {placemarkManager} from "../functions";
 
 import "./index.css";
 
@@ -23,23 +25,8 @@ class WrappedMap extends React.Component {
     const places = this.props.dataPlace;
     let arr = [];
 
-    for (let place in places) {
-      let storeInfo = places[place];
-      arr.push(
-        <Placemark
-          modules={["geoObject.addon.balloon"]}
-          key={storeInfo.id}
-          geometry={storeInfo.coordinates}
-          properties={{
-            iconCaption: place,
-            balloonContentHeader: `${place}<br />
-            <img src=${storeInfo.img_100x100} />`,
-            balloonContentBody: storeInfo.description,
-            balloonContentFooter: `${storeInfo.address}<br /><b>${storeInfo.openingHours}</b>`,
-          }}
-        />
-      )
-    }
+    placemarkManager(arr, places);
+
     this.props.createPlacemarkStorage(arr);
   }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import {Placemark} from 'react-yandex-maps';
+import {placemarkManager} from "../functions";
 
 import "./index.css";
 
@@ -54,27 +55,12 @@ class AddressPanal extends React.Component {
     if (target.classList.contains("active")) {
       this.setState({isActiveLi: false});
       target.classList.remove("active");
-      //Это продублированный код из метода placeMarking() компонента WrappedMap.
-      //Было бы хорошо, как-то расшарить эту функцию для других компонентов.
+
       const places = this.props.dataPlace;
       let arr = [];
 
-      for (let place in places) {
-        let storeInfo = places[place];
-        arr.push(
-          <Placemark
-            modules={["geoObject.addon.balloon"]}
-            key={storeInfo.id}
-            geometry={storeInfo.coordinates}
-            properties={{
-              iconCaption: place,
-              balloonContentHeader: `${place}<br /><img src=${storeInfo.img_100x100} />`,
-              balloonContentBody: storeInfo.description,
-              balloonContentFooter: `${storeInfo.address}<br /><b>${storeInfo.openingHours}</b>`,
-            }}
-          />
-        )
-      }
+      placemarkManager(arr, places);
+
       this.props.createPlacemarkStorage(arr);
 
       return;
@@ -108,7 +94,7 @@ class AddressPanal extends React.Component {
         geometry={coord}
         properties={{
           iconCaption: caption,
-          balloonContentHeader: `${caption}<br /><img src=${img_100x100} />`,
+          balloonContentHeader: `<a class="toInfoPanel" href="#" data-id=${key}>${caption}<br /><img src=${img_100x100} /></a>`,
           balloonContentBody: description,
           balloonContentFooter: `${address}<br /><b>${openingHours}</b>`,
         }}
@@ -126,7 +112,7 @@ class AddressPanal extends React.Component {
       <div className="wrapper">
         <nav id="sidebar">
           <div
-            id="dismiss"
+            className="dismiss"
             onClick={this.closeList}
           >
             <svg height="32px" version="1.1" viewBox="0 0 32 32" width="32px" xmlns="http://www.w3.org/2000/svg"><path d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg>
