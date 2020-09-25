@@ -1,0 +1,56 @@
+.infoWrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 4;
+  left: -40vw;
+  top: 0;
+  width: 40vw;
+  height: 100vh;
+  background: #004085;
+  overflow: auto;
+  transition: all 0.3s;
+}
+
+.infoWrapper.active {
+  left: 0;
+}
+
+.infoWrapper img,
+.infoWrapper p
+{
+  width: 100%;
+}
+
+.infoWrapper p {
+  background: #ebebeb;
+  padding: 10px;
+}
+figcaption h1 {
+  text-align: center;
+  padding-top: 10px;
+  margin: 0;
+  color: white;
+  padding-bottom: 5px;
+}
+
+figcaption h3 {
+  text-align: center;
+  color: #a0a8b4;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption address {
+  position: absolute;
+  float: right;
+  margin: 0;
+  height: 50px;
+  background: #ebebeb;
+  border: 2px dashed black;
+  border-radius: 10px;
+  padding: 10px;
+  top: 0px;
+}
