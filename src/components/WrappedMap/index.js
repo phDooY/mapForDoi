@@ -37,7 +37,6 @@ class WrappedMap extends React.Component {
         timeout: 30000,
         maximumAge: 0,
       }
-
       navigator.geolocation.watchPosition(this.gotPos, this.posFail, options);
 
     } else {

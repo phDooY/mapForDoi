@@ -8,6 +8,7 @@ import ListButton from '../ListButton';
 import AddressPanel from '../AddressPanel';
 import {setMapCenter} from '../../actions/WrappedMapAction';
 import {createPlacemarkStorage} from '../../actions/MapAndPanelAction';
+import {createImgsArr} from '../../actions/InfoPanelAction';
 import InfoPanel from '../InfoPanel';
 // import Portal from '../Portal';
 
@@ -35,13 +36,13 @@ class App extends React.Component {
         let storeInfo = data[place];
 
         if (storeInfo.id === +dataId) {
-          const imgForPanel = document.getElementById("imgForPanel");
           const addressForPanel = document.getElementById("addressForPanel");
           const nameForPanel = document.getElementById("nameForPanel");
           const openingHoursForPanel = document.getElementById("openingHoursForPanel");
           const descriptionForPanel = document.getElementById("descriptionForPanel");
 
-          imgForPanel.setAttribute("src", `${storeInfo.img}`);
+          this.props.createImgsArr(storeInfo.img);
+
           addressForPanel.textContent = `${storeInfo.address}`;
           nameForPanel.textContent = `${place}`;
           openingHoursForPanel.textContent = `${storeInfo.openingHours}`;
@@ -54,7 +55,6 @@ class App extends React.Component {
           break;
         }
       }
-
     }
 
     return;
@@ -67,6 +67,7 @@ class App extends React.Component {
       stateForMap,
       placemarkStorage,
       createPlacemarkStorage,
+      imgsForInfoPanel,
     } = this.props;
 
     return (
@@ -86,7 +87,9 @@ class App extends React.Component {
           placemarkStorage={placemarkStorage}
           createPlacemarkStorage={createPlacemarkStorage}
         />
-        <InfoPanel />
+        <InfoPanel
+          imgsForInfoPanel={imgsForInfoPanel}
+        />
         {/* <Portal
           dataPlace={dataPlace}
         /> */}
@@ -100,6 +103,7 @@ function mapStateToProps(store) {
     dataPlace: store.dataPlace,
     stateForMap: store.stateForMap,
     placemarkStorage: store.placemarkStorage,
+    imgsForInfoPanel: store.imgsForInfoPanel,
   }
 }
 
@@ -107,6 +111,7 @@ function mapDispatchToProps(dispatch) {
   return {
     setMapCenterAction: (coord) => dispatch(setMapCenter(coord)),
     createPlacemarkStorage: (arr) => dispatch(createPlacemarkStorage(arr)),
+    createImgsArr: (arr) => dispatch(createImgsArr(arr)),
   }
 }
 
