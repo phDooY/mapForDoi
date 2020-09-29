@@ -42,8 +42,9 @@ class InfoPanel extends React.Component {
                 href={item[1]}
                 className="socialIcon"
                 target="_blank"
+                rel="noopener noreferrer"
               >
-                <img src={`./img/svg/socialNetworks/${item[0]}.svg`} />
+                <img src={`./img/svg/socialNetworks/${item[0]}.svg`} alt="" />
               </a>
             ))
             }
