@@ -22,6 +22,7 @@ class InfoPanel extends React.Component {
   render() {
     const {
       imgsForInfoPanel,
+      linksForInfoPanel,
     } = this.props;
 
     return (
@@ -32,8 +33,23 @@ class InfoPanel extends React.Component {
         >
           <svg width="32px" height="32px" viewBox="0 0 352 512" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
         </div>
-
+        <div
+            id="links"
+          >
+            {Object.entries(linksForInfoPanel).map((item, index) => (
+              <a
+                key={index}
+                href={item[1]}
+                className="socialIcon"
+                target="_blank"
+              >
+                <img src={`./img/svg/socialNetworks/${item[0]}.svg`} />
+              </a>
+            ))
+            }
+          </div>
         <figure>
+
         <Carousel
           interval={60 * 1000}
           controls={(imgsForInfoPanel.length === 1) ? false : true}
@@ -47,7 +63,7 @@ class InfoPanel extends React.Component {
                 alt="store"
               />
             </Carousel.Item>
-            ))
+          ))
           }
           </Carousel>
           <figcaption>

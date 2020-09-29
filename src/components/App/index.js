@@ -9,6 +9,7 @@ import AddressPanel from '../AddressPanel';
 import {setMapCenter} from '../../actions/WrappedMapAction';
 import {createPlacemarkStorage} from '../../actions/MapAndPanelAction';
 import {createImgsArr} from '../../actions/InfoPanelAction';
+import {createLinksObj} from '../../actions/createLinksObj';
 import InfoPanel from '../InfoPanel';
 // import Portal from '../Portal';
 
@@ -42,6 +43,7 @@ class App extends React.Component {
           const descriptionForPanel = document.getElementById("descriptionForPanel");
 
           this.props.createImgsArr(storeInfo.img);
+          this.props.createLinksObj(storeInfo.links);
 
           addressForPanel.textContent = `${storeInfo.address}`;
           nameForPanel.textContent = `${place}`;
@@ -68,6 +70,7 @@ class App extends React.Component {
       placemarkStorage,
       createPlacemarkStorage,
       imgsForInfoPanel,
+      linksForInfoPanel,
     } = this.props;
 
     return (
@@ -89,6 +92,7 @@ class App extends React.Component {
         />
         <InfoPanel
           imgsForInfoPanel={imgsForInfoPanel}
+          linksForInfoPanel={linksForInfoPanel}
         />
         {/* <Portal
           dataPlace={dataPlace}
@@ -104,6 +108,7 @@ function mapStateToProps(store) {
     stateForMap: store.stateForMap,
     placemarkStorage: store.placemarkStorage,
     imgsForInfoPanel: store.imgsForInfoPanel,
+    linksForInfoPanel: store.linksForInfoPanel,
   }
 }
 
@@ -112,6 +117,7 @@ function mapDispatchToProps(dispatch) {
     setMapCenterAction: (coord) => dispatch(setMapCenter(coord)),
     createPlacemarkStorage: (arr) => dispatch(createPlacemarkStorage(arr)),
     createImgsArr: (arr) => dispatch(createImgsArr(arr)),
+    createLinksObj: (obj) => dispatch(createLinksObj(obj)),
   }
 }
 
