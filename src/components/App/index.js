@@ -11,7 +11,13 @@ import {createPlacemarkStorage} from '../../actions/MapAndPanelAction';
 import {createImgsArr} from '../../actions/InfoPanelAction';
 import {createLinksObj} from '../../actions/createLinksObj';
 import InfoPanel from '../InfoPanel';
+import {fillingInfoPanel} from "../functions";
 // import Portal from '../Portal';
+
+import {
+BrowserRouter as Router,
+Route,
+} from "react-router-dom";
 
 
 class App extends React.Component {
@@ -29,6 +35,8 @@ class App extends React.Component {
     let target = e.target;
 
     if (target.closest(".toInfoPanel") !== null || target.className === "toInfoPanel") {
+      e.preventDefault();
+
       let elem = document.getElementById("infoPanel");
       let dataId = (target.closest(".toInfoPanel") !== null) ? target.closest(".toInfoPanel").dataset.id : target.dataset.id;
       const data = this.props.dataPlace;
@@ -37,22 +45,9 @@ class App extends React.Component {
         let storeInfo = data[place];
 
         if (storeInfo.id === +dataId) {
-          const addressForPanel = document.getElementById("addressForPanel");
-          const nameForPanel = document.getElementById("nameForPanel");
-          const openingHoursForPanel = document.getElementById("openingHoursForPanel");
-          const descriptionForPanel = document.getElementById("descriptionForPanel");
+          window.history.pushState(null, null, `${place}-Panel-${dataId}`);
 
-          this.props.createImgsArr(storeInfo.img);
-          this.props.createLinksObj(storeInfo.links);
-
-          addressForPanel.textContent = `${storeInfo.address}`;
-          nameForPanel.textContent = `${place}`;
-          openingHoursForPanel.textContent = `${storeInfo.openingHours}`;
-          descriptionForPanel.textContent = `${storeInfo.description}`;
-
-          elem.classList.add("active");
-
-          this.props.setMapCenterAction(storeInfo.coordinates);
+          fillingInfoPanel(storeInfo, place, elem, this.props);
 
           break;
         }
@@ -71,33 +66,44 @@ class App extends React.Component {
       createPlacemarkStorage,
       imgsForInfoPanel,
       linksForInfoPanel,
+      createImgsArr,
+      createLinksObj
     } = this.props;
 
     return (
-      <div className="App" onClick={this.createInfoPanel}>
-        <ListButton />
-        <AddressPanel
-          dataPlace={dataPlace}
-          setMapCenter={setMapCenterAction}
-          stateForMap={stateForMap}
-          placemarkStorage={placemarkStorage}
-          createPlacemarkStorage={createPlacemarkStorage}
-        />
-        <WrappedMap
-          dataPlace={dataPlace}
-          setMapCenter={setMapCenterAction}
-          stateForMap={stateForMap}
-          placemarkStorage={placemarkStorage}
-          createPlacemarkStorage={createPlacemarkStorage}
-        />
-        <InfoPanel
-          imgsForInfoPanel={imgsForInfoPanel}
-          linksForInfoPanel={linksForInfoPanel}
-        />
-        {/* <Portal
-          dataPlace={dataPlace}
-        /> */}
-      </div>
+      <Router>
+        <Route path="/">
+          <div className="App" onClick={this.createInfoPanel}>
+            <ListButton />
+            <AddressPanel
+              dataPlace={dataPlace}
+              setMapCenterAction={setMapCenterAction}
+              stateForMap={stateForMap}
+              placemarkStorage={placemarkStorage}
+              createPlacemarkStorage={createPlacemarkStorage}
+            />
+            <WrappedMap
+              dataPlace={dataPlace}
+              setMapCenterAction={setMapCenterAction}
+              stateForMap={stateForMap}
+              placemarkStorage={placemarkStorage}
+              createPlacemarkStorage={createPlacemarkStorage}
+            />
+            <InfoPanel
+              dataPlace={dataPlace}
+              setMapCenterAction={setMapCenterAction}
+              createImgsArr={createImgsArr}
+              createLinksObj={createLinksObj}
+              imgsForInfoPanel={imgsForInfoPanel}
+              linksForInfoPanel={linksForInfoPanel}
+              createPlacemarkStorage={createPlacemarkStorage}
+            />
+            {/* <Portal
+              dataPlace={dataPlace}
+            /> */}
+          </div>
+        </Route>
+      </Router>
     );
   }
 }

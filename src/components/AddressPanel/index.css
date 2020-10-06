@@ -46,16 +46,20 @@
   color: #007bff;
 }
 
-li.list-group-item-primary:hover {
+#sidebar a {
+  text-decoration: none;
+}
+
+a.list-group-item-primary:hover {
   cursor: pointer;
   background: #ebebeb;
   transition: all 0.3s;
 }
 
-li.active:hover {
+a.active:hover {
   color: #004085;
 }
 
-li.active {
+a.active {
   transition: all 0.3s;
 }

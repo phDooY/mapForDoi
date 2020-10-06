@@ -51,7 +51,7 @@ class WrappedMap extends React.Component {
     // console.log(`${lat}, ${lng}`);
     if (!this.state.isUserLocationOn) {
       this.setState({coorForMapState: [lat, lng]});
-      this.props.setMapCenter(this.state.coorForMapState);
+      this.props.setMapCenterAction(this.state.coorForMapState);
     }
 
     this.setState({
@@ -115,13 +115,5 @@ class WrappedMap extends React.Component {
     )
   }
 }
-
-// function mapStateToProps(store) {
-//   return {
-//     dataPlace: store.dataPlace,
-//   }
-// }
-
-// export default connect(mapStateToProps)(WrappedMap);
 
 export default WrappedMap;

@@ -14,13 +14,12 @@ class InputForSearch extends React.Component {
   }
 
   filterSearch(value) {
+    const lines = document.querySelectorAll("#addressListGroup > a");
 
-    const lines = document.querySelectorAll("#addressListGroup > li");
-
-    for (let li of lines) {
+    for (let a of lines) {
 
       let absenceIndicator = true;
-      let pCollection = li.children;
+      let pCollection = a.children;
 
       for (let p of pCollection) {
         if (p.textContent.toLowerCase().indexOf(value.toLowerCase()) === -1) {
@@ -32,9 +31,9 @@ class InputForSearch extends React.Component {
       }
 
       if (absenceIndicator) {
-        li.setAttribute("hidden", true);
+        a.setAttribute("hidden", true);
       } else {
-        li.removeAttribute("hidden");
+        a.removeAttribute("hidden");
       }
     }
   }
