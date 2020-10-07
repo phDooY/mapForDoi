@@ -1,6 +1,6 @@
 const initialState = {
    "Doi":{
-      id:"1",
+      id:1,
       coordinates:[
          55.826033,
          37.766253
@@ -22,7 +22,7 @@ const initialState = {
       }
    },
    "Vendik":{
-      id:"2",
+      id:2,
       coordinates:[
          55.825243,
          37.767175
@@ -43,7 +43,7 @@ const initialState = {
       }
    },
    "Ser":{
-      id:"3",
+      id:3,
       coordinates:[
          55.821145,
          37.750658
@@ -65,7 +65,7 @@ const initialState = {
       }
    },
    "Olechka":{
-      id:"4",
+      id:4,
       coordinates:[
          55.821775,
          37.750744
@@ -88,7 +88,7 @@ const initialState = {
       }
    },
    "Sla":{
-      id:"5",
+      id:5,
       coordinates:[
          55.822827,
          37.757359
@@ -108,7 +108,7 @@ const initialState = {
       }
    },
    "CurlyHouse":{
-      id:"6",
+      id:6,
       coordinates:[
          55.704098,
          37.615884
@@ -128,7 +128,7 @@ const initialState = {
       }
    },
    "wonderwander-shop":{
-      id:"7",
+      id:7,
       coordinates:[
          55.763457,
          37.594369
@@ -148,7 +148,7 @@ const initialState = {
       }
    },
    "presentsimple.tricot":{
-      id:"8",
+      id:8,
       coordinates:[
          55.7668,
          37.596615
@@ -168,7 +168,7 @@ const initialState = {
       }
    },
    "lynxstore":{
-      id:"9",
+      id:9,
       coordinates:[
          55.729594,
          37.632996
@@ -188,7 +188,7 @@ const initialState = {
       }
    },
    "Vanlim":{
-      id:"10",
+      id:10,
       coordinates:[
          55.763315,
          37.615731
@@ -208,7 +208,7 @@ const initialState = {
       }
    },
    "indexflat":{
-      id:"11",
+      id:11,
       coordinates:[
          55.749263,
          37.59356
@@ -228,7 +228,7 @@ const initialState = {
       }
    },
    "pitkina_ru":{
-      id:"12",
+      id:12,
       coordinates:[
          55.767185,
          37.591135
@@ -248,7 +248,7 @@ const initialState = {
       }
    },
    "prav.da_store":{
-      id:"13",
+      id:13,
       coordinates:[
          55.763315,
          37.615731
@@ -268,7 +268,7 @@ const initialState = {
       }
    },
    "elen_dan":{
-      id:"14",
+      id:14,
       coordinates:[
          55.747692,
          37.568929
@@ -288,7 +288,7 @@ const initialState = {
       }
    },
    "golovina.brand":{
-      id:"15",
+      id:15,
       coordinates:[
          55.757182,
          37.600082
@@ -308,7 +308,7 @@ const initialState = {
       }
    },
    "duetbuyme":{
-      id:"16",
+      id:16,
       coordinates:[
          55.807435,
          37.702706
@@ -328,7 +328,7 @@ const initialState = {
       }
    },
    "anima jewelery":{
-      id:"17",
+      id:17,
       coordinates:[
          55.755059,
          37.599552
@@ -348,7 +348,7 @@ const initialState = {
       }
    },
    "strogovintage":{
-      id:"18",
+      id:18,
       coordinates:[
          55.759471,
          37.645537
@@ -368,7 +368,7 @@ const initialState = {
       }
    },
    "reuse_vintage":{
-      id:"19",
+      id:19,
       coordinates:[
          55.758397,
          37.638844
@@ -388,7 +388,7 @@ const initialState = {
       }
    },
    "mix_match":{
-      id:"20",
+      id:20,
       coordinates:[
          55.755945,
          37.643165
@@ -408,7 +408,7 @@ const initialState = {
       }
    },
    "vintage_heritage":{
-      id:"21",
+      id:21,
       coordinates:[
          55.761735,
          37.641486
@@ -428,7 +428,7 @@ const initialState = {
       }
    },
    "oldnew":{
-      id:"22",
+      id:22,
       coordinates:[
          55.765417,
          37.611033
@@ -448,7 +448,7 @@ const initialState = {
       }
    },
    "epoque_vintage":{
-      id:"23",
+      id:23,
       coordinates:[
          55.712112,
          37.620555
@@ -468,7 +468,7 @@ const initialState = {
       }
    },
    "actual vintage":{
-      id:"24",
+      id:24,
       coordinates:[
          55.764693,
          37.595456
@@ -488,7 +488,7 @@ const initialState = {
       }
    },
    "avoska.vintage":{
-      id:"25",
+      id:25,
       coordinates:[
          55.758397,
          37.638844
