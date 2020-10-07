@@ -1,73 +1,512 @@
 const initialState = {
-  "Doi": {
-    id: 1,
-    coordinates: [55.826033, 37.766253],
-    address: "Улица Дуёвская, д.14 к.88",
-    openingHours: "открыто 24/7",
-    description: "Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй ",
-    img: ["./img/jpg/Doi/Doi_1.jpg", "./img/jpg/Doi/Doi_2.jpg", "./img/jpg/Doi/Doi_3.jpg"],
-    img_100x100: "./img/jpg/jpg100x100/Doi_100x100.jpg",
-    links: {
-      site: "https://ru.wiktionary.org/wiki/site",
-      vk: "https://vk.com",
-      fb: "https://ru-ru.facebook.com/",
-      instagram: "https://www.instagram.com/?hl=ru",
-    },
-  },
-  "Vendik": {
-    id: 2,
-    coordinates: [55.825243, 37.767175],
-    address: "Улица Ведятская, д.22 к.8",
-    openingHours: "закрыто 24/7",
-    description: "Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик",
-    img: ["./img/jpg/Vendik/Vendik_1.jpg", "./img/jpg/Vendik/Vendik_2.jpg"],
-    img_100x100: "./img/jpg/jpg100x100/Vendik_100x100.jpg",
-    links: {
-      site: "https://ru.wiktionary.org/wiki/site",
-    },
-  },
-  "Ser": {
-    id: 3,
-    coordinates: [55.821145, 37.750658],
-    address: "Улица Санова, д.28 к.2",
-    openingHours: "пн. - пт.: c 12:00 - 20:00\nсб., вс.: выходной",
-    description: "Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер",
-    img: ["./img/jpg/Ser/Ser_1.jpg", "./img/jpg/Ser/Ser_2.jpg", "./img/jpg/Ser/Ser_3.jpg"],
-    img_100x100: "./img/jpg/jpg100x100/Ser_100x100.jpg",
-    links: {
-      site: "https://ru.wiktionary.org/wiki/site",
-      fb: "https://ru-ru.facebook.com/",
-      instagram: "https://www.instagram.com/?hl=ru",
-    },
-  },
-  "Olechka": {
-    id: 4,
-    coordinates: [55.821775, 37.750744],
-    address: "Улица Олечки, д.0 к.0",
-    openingHours: "пн.: c 12:00 - 13:00\nвт. - вс.: выходной",
-    description: "Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка",
-    img: ["./img/jpg/Olechka/Olechka_1.jpg", "./img/jpg/Olechka/Olechka_2.jpg", "./img/jpg/Olechka/Olechka_3.jpg", "./img/jpg/Olechka/Olechka_4.jpg"],
-    img_100x100: "./img/jpg/jpg100x100/Olechka_100x100.jpg",
-    links: {
-      site: "https://ru.wiktionary.org/wiki/site",
-      vk: "https://vk.com",
-      fb: "https://ru-ru.facebook.com/",
-      instagram: "https://www.instagram.com/?hl=ru",
-    },
-  },
-  "Sla": {
-    id: 5,
-    coordinates: [55.822827, 37.757359],
-    address: "Улица Сла, д.6 к.9",
-    openingHours: "временно не работает",
-    description: "Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла",
-    img: ["./img/jpg/Sla/Sla_1.jpg"],
-    img_100x100: "./img/jpg/jpg100x100/Sla_100x100.jpg",
-    links: {
-      vk: "https://vk.com",
-      fb: "https://ru-ru.facebook.com/",
-    },
-  },
+   "Doi":{
+      "id":"1",
+      "coordinates":[
+         55.826033,
+         37.766253
+      ],
+      "address":"Улица Дуёвская, д.14 к.88",
+      "openingHours":"открыто 24/7",
+      "description":"Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй Это Дуй",
+      "img":[
+         "./img/jpg/Doi/Doi_1.jpg",
+         "./img/jpg/Doi/Doi_2.jpg",
+         "./img/jpg/Doi/Doi_3.jpg"
+      ],
+      "img_100x100":"./img/jpg/jpg100x100/Doi_100x100.jpg",
+      "links":{
+         "site":"https://ru.wiktionary.org/wiki/site",
+         "vk":"https://vk.com",
+         "fb":"https://ru-ru.facebook.com",
+         "instagram":"https://www.instagram.com"
+      }
+   },
+   "Vendik":{
+      "id":"2",
+      "coordinates":[
+         55.825243,
+         37.767175
+      ],
+      "address":"Улица Ведятская, д.22 к.8",
+      "openingHours":"закрыто 24/7",
+      "description":"Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик Это Вендик",
+      "img":[
+         "./img/jpg/Vendik/Vendik_1.jpg",
+         "./img/jpg/Vendik/Vendik_2.jpg"
+      ],
+      "img_100x100":"./img/jpg/jpg100x100/Vendik_100x100.jpg",
+      "links":{
+         "site":"https://ru.wiktionary.org/wiki/site",
+         "vk":"",
+         "fb":"",
+         "instagram":""
+      }
+   },
+   "Ser":{
+      "id":"3",
+      "coordinates":[
+         55.821145,
+         37.750658
+      ],
+      "address":"Улица Санова, д.28 к.2",
+      "openingHours":"пн. - пт.: c 12:00 - 20:00\\nсб., вс.: выходной",
+      "description":"Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер Это Сер",
+      "img":[
+         "./img/jpg/Ser/Ser_1.jpg",
+         "./img/jpg/Ser/Ser_2.jpg",
+         "./img/jpg/Ser/Ser_3.jpg"
+      ],
+      "img_100x100":"./img/jpg/jpg100x100/Ser_100x100.jpg",
+      "links":{
+         "site":"https://ru.wiktionary.org/wiki/site",
+         "vk":"",
+         "fb":"https://ru-ru.facebook.com",
+         "instagram":"https://www.instagram.com"
+      }
+   },
+   "Olechka":{
+      "id":"4",
+      "coordinates":[
+         55.821775,
+         37.750744
+      ],
+      "address":"Улица Олечки, д.0 к.0",
+      "openingHours":"пн.: c 12:00 - 13:00\\nвт. - вс.: выходной",
+      "description":"Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка Это Олечка",
+      "img":[
+         "./img/jpg/Olechka/Olechka_1.jpg",
+         "./img/jpg/Olechka/Olechka_2.jpg",
+         "./img/jpg/Olechka/Olechka_3.jpg",
+         "./img/jpg/Olechka/Olechka_4.jpg"
+      ],
+      "img_100x100":"./img/jpg/jpg100x100/Olechka_100x100.jpg",
+      "links":{
+         "site":"https://ru.wiktionary.org/wiki/site",
+         "vk":"https://vk.com",
+         "fb":"https://ru-ru.facebook.com",
+         "instagram":"https://www.instagram.com"
+      }
+   },
+   "Sla":{
+      "id":"5",
+      "coordinates":[
+         55.822827,
+         37.757359
+      ],
+      "address":"Улица Сла, д.6 к.9",
+      "openingHours":"временно не работает",
+      "description":"Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла Это Сла",
+      "img":[
+         "./img/jpg/Sla/Sla_1.jpg"
+      ],
+      "img_100x100":"./img/jpg/jpg100x100/Sla_100x100.jpg",
+      "links":{
+         "site":"",
+         "vk":"https://vk.com",
+         "fb":"https://ru-ru.facebook.com",
+         "instagram":""
+      }
+   },
+   "CurlyHouse":{
+      "id":"6",
+      "coordinates":[
+         55.704098,
+         37.615884
+      ],
+      "address":"Духовской переулок 17",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"https://curlyhouse.ru",
+         "vk":"",
+         "fb":"",
+         "instagram":""
+      }
+   },
+   "wonderwander-shop":{
+      "id":"7",
+      "coordinates":[
+         55.763457,
+         37.594369
+      ],
+      "address":"Малая Бронная ул., 26 строение 1,",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"https://wonderwander-shop.com/ru/",
+         "vk":"",
+         "fb":"",
+         "instagram":""
+      }
+   },
+   "presentsimple.tricot":{
+      "id":"8",
+      "coordinates":[
+         55.7668,
+         37.596615
+      ],
+      "address":"Благовещенский переулок 1А, офис 417",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/presentsimple.tricot/"
+      }
+   },
+   "lynxstore":{
+      "id":"9",
+      "coordinates":[
+         55.729594,
+         37.632996
+      ],
+      "address":"ул. Зацепа, 21",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/lynxstore/"
+      }
+   },
+   "Vanlim":{
+      "id":"10",
+      "coordinates":[
+         55.763315,
+         37.615731
+      ],
+      "address":"Столешников переулок 11",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"https://vanlim.com/",
+         "vk":"",
+         "fb":"",
+         "instagram":""
+      }
+   },
+   "indexflat":{
+      "id":"11",
+      "coordinates":[
+         55.749263,
+         37.59356
+      ],
+      "address":"Староконюшенный переулок 41/3",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/indexflat/"
+      }
+   },
+   "pitkina_ru":{
+      "id":"12",
+      "coordinates":[
+         55.767185,
+         37.591135
+      ],
+      "address":"Большая садовая 3 стр.2",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/pitkina__ru/"
+      }
+   },
+   "prav.da_store":{
+      "id":"13",
+      "coordinates":[
+         55.763315,
+         37.615731
+      ],
+      "address":"Столешников переулок 11,  офис 428",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/prav.da_store/"
+      }
+   },
+   "elen_dan":{
+      "id":"14",
+      "coordinates":[
+         55.747692,
+         37.568929
+      ],
+      "address":"Тараса Шевченко 3к3",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/elen_dan_/"
+      }
+   },
+   "golovina.brand":{
+      "id":"15",
+      "coordinates":[
+         55.757182,
+         37.600082
+      ],
+      "address":"Большая Никитская 21/18, с4",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/golovina.brand/"
+      }
+   },
+   "duetbuyme":{
+      "id":"16",
+      "coordinates":[
+         55.807435,
+         37.702706
+      ],
+      "address":"Краснобогатырская 42 с 1",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/duetbyme/"
+      }
+   },
+   "anima jewelery":{
+      "id":"17",
+      "coordinates":[
+         55.755059,
+         37.599552
+      ],
+      "address":"Никитский бульвар 11/12",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/animajewels/"
+      }
+   },
+   "strogovintage":{
+      "id":"18",
+      "coordinates":[
+         55.759471,
+         37.645537
+      ],
+      "address":"Покровка 17",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/strogovintage/"
+      }
+   },
+   "reuse_vintage":{
+      "id":"19",
+      "coordinates":[
+         55.758397,
+         37.638844
+      ],
+      "address":"Покровка 1",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/reuse__vintage/"
+      }
+   },
+   "mix_match":{
+      "id":"20",
+      "coordinates":[
+         55.755945,
+         37.643165
+      ],
+      "address":"Хохловский переулок 7-9, стр.2, подъезд 2",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/mixandmatchvintage/"
+      }
+   },
+   "vintage_heritage":{
+      "id":"21",
+      "coordinates":[
+         55.761735,
+         37.641486
+      ],
+      "address":"Потаповский переулок 5с4, 2 этаж, комната 226",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/vintage_heritage/"
+      }
+   },
+   "oldnew":{
+      "id":"22",
+      "coordinates":[
+         55.765417,
+         37.611033
+      ],
+      "address":"Большая Дмитровка 32",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/oldnew_moscow/"
+      }
+   },
+   "epoque_vintage":{
+      "id":"23",
+      "coordinates":[
+         55.712112,
+         37.620555
+      ],
+      "address":"Мытная 74",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/epoque.vintage/"
+      }
+   },
+   "actual vintage":{
+      "id":"24",
+      "coordinates":[
+         55.764693,
+         37.595456
+      ],
+      "address":"Большой Козихинский переулок 22/2",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/actual_vintage/"
+      }
+   },
+   "avoska.vintage":{
+      "id":"25",
+      "coordinates":[
+         55.758397,
+         37.638844
+      ],
+      "address":"Покровка 1",
+      "openingHours":"",
+      "description":"",
+      "img":[
+         ""
+      ],
+      "img_100x100":"",
+      "links":{
+         "site":"",
+         "vk":"",
+         "fb":"",
+         "instagram":"https://www.instagram.com/avoska.vintage/"
+      }
+   }
 }
 
 export default function dataPlace(state = initialState) {
