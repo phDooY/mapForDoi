@@ -1,7 +1,13 @@
 import React from "react";
 import {Placemark} from 'react-yandex-maps';
 import {ListGroup} from 'react-bootstrap';
-import {placemarkManager} from "../functions";
+import {
+  placemarkManager,
+  closePanel,
+  binarySearch,
+  showList,
+} from "../functions";
+import {Link} from "react-router-dom";
 
 import "./index.css";
 import InputForSearch from "../InputForSearch";
@@ -15,8 +21,8 @@ class AddressPanal extends React.Component {
     }
 
     this.createListPlace = this.createListPlace.bind(this);
-    this.closeList = this.closeList.bind(this);
     this.focusOnPlace = this.focusOnPlace.bind(this);
+    this.chackingURL = this.chackingURL.bind(this);
   }
 
   createListPlace() {
@@ -26,7 +32,8 @@ class AddressPanal extends React.Component {
     for (let place in places) {
       let storeInfo = places[place];
       arr.push(
-      <li
+      <Link
+        to={`${place}-Address-${storeInfo.id}`}
         key={storeInfo.id}
         className="list-group-item list-group-item-primary"
         data-coord={storeInfo.coordinates}
@@ -39,7 +46,7 @@ class AddressPanal extends React.Component {
       >
         <p>{place}</p>
         <p>{storeInfo.address}</p>
-      </li>
+      </Link>
       )
     }
 
@@ -57,14 +64,8 @@ class AddressPanal extends React.Component {
     this.setState({listPlace: arr});
   }
 
-  closeList() {
-    const sidebar = document.getElementById("sidebar");
-
-    sidebar.classList.remove("active");
-  }
-
   focusOnPlace(event) {
-    const target = event.target.closest("li");
+    const target = event.target.closest("a");
 
     if (target.classList.contains("active")) {
       this.setState({isActiveLi: false});
@@ -81,7 +82,7 @@ class AddressPanal extends React.Component {
     }
 
     if (this.state.isActiveLi) {
-      const activeLi = document.querySelector("li.active");
+      const activeLi = document.querySelector("a.active");
       activeLi.classList.remove("active");
     }
 
@@ -97,7 +98,7 @@ class AddressPanal extends React.Component {
     let coord = target.dataset.coord;
     coord = coord.split(",");
 
-    this.props.setMapCenter(coord);
+    this.props.setMapCenterAction(coord);
 
     target.classList.add("active");
 
@@ -117,8 +118,56 @@ class AddressPanal extends React.Component {
 
   }
 
+  chackingURL() {
+    let pathname = window.location.pathname.split("-");
+
+    if (pathname[1] !== "Address") {
+      return
+    }
+
+    pathname = pathname[2];
+
+    if (pathname) {
+      this.setState({isActiveLi: true});
+
+      let data = Object.entries(this.props.dataPlace);
+      data = data[+pathname - 1];
+      const dataObj = data[1];
+
+      this.props.createPlacemarkStorage([
+        <Placemark
+          modules={["geoObject.addon.balloon"]}
+          key={dataObj.id}
+          geometry={dataObj.coordinates}
+          properties={{
+            iconCaption: data[0],
+            balloonContentHeader: `<a class="toInfoPanel" href="#" data-id=${dataObj.id}>${data[0]}<br /><img src=${dataObj.img_100x100} /></a>`,
+            balloonContentBody: dataObj.description,
+            balloonContentFooter: `${dataObj.address}<br /><b>${dataObj.openingHours}</b>`,
+          }}
+        />
+      ]);
+
+      this.props.setMapCenterAction(dataObj.coordinates);
+
+      const linkArr = document.querySelectorAll("#addressListGroup a");
+
+      const activeLinkPosition = binarySearch(linkArr, data[0]);
+
+      linkArr[activeLinkPosition].classList.add("active");
+      linkArr[activeLinkPosition].scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+      showList();
+    }
+  }
+
   componentDidMount() {
-    this.createListPlace();
+    (async () => {
+      await this.createListPlace();
+      await this.chackingURL();
+    })();
   }
 
   render() {
@@ -127,7 +176,7 @@ class AddressPanal extends React.Component {
         <nav id="sidebar">
           <div
             className="dismiss"
-            onClick={this.closeList}
+            onClick={() => closePanel("sidebar")}
           >
             <img
               src="./img/svg/navIcons/arrowLeft.svg"

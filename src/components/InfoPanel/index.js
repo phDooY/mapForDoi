@@ -1,5 +1,7 @@
 import React from "react";
 import {Carousel} from "react-bootstrap";
+import {fillingInfoPanel, closePanel, placemarkManager} from "../functions";
+
 import "./index.css";
 
 class InfoPanel extends React.Component {
@@ -10,13 +12,35 @@ class InfoPanel extends React.Component {
 
     }
 
-    this.closeInfoPanel = this.closeInfoPanel.bind(this);
+    this.checkingURL = this.checkingURL.bind(this);
   }
-  // такаяже функция в компоненте AddressPanal. Может, как-то расшарить её?
-  closeInfoPanel() {
-    const sidebar = document.getElementById("infoPanel");
 
-    sidebar.classList.remove("active");
+  checkingURL() {
+    let pathname = window.location.pathname.split("-");
+
+    if (pathname[1] !== "Panel") {
+      return
+    }
+
+    pathname = pathname[2];
+
+    if (pathname) {
+      const dataArr = Object.entries(this.props.dataPlace);
+      const data = dataArr[+pathname - 1];
+      const elem = document.getElementById("infoPanel")
+
+      fillingInfoPanel(data[1], data[0], elem, this.props)
+
+      let arr = [];
+      const places = this.props.dataPlace;
+      placemarkManager(arr, places, data[0])
+
+      this.props.createPlacemarkStorage(arr);
+    }
+  }
+
+  componentDidMount() {
+    this.checkingURL();
   }
 
   render() {
@@ -29,7 +53,7 @@ class InfoPanel extends React.Component {
       <div id="infoPanel" className="infoWrapper">
         <div
           className="dismiss"
-          onClick={this.closeInfoPanel}
+          onClick={() => closePanel("infoPanel")}
         >
           <img
             src="./img/svg/navIcons/closeIcon.svg"
@@ -37,24 +61,24 @@ class InfoPanel extends React.Component {
           />
         </div>
         <div
-            id="links"
-          >
-            {Object.entries(linksForInfoPanel).map((item, index) => (
-              <a
-                key={index}
-                href={item[1]}
-                className="socialIcon"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={`./img/svg/socialNetworks/${item[0]}.svg`}
-                  alt={`ссылка на ${item[0]}`}
-                />
-              </a>
-            ))
-            }
-          </div>
+          id="links"
+        >
+          {Object.entries(linksForInfoPanel).map((item, index) => (
+            <a
+              key={index}
+              href={item[1]}
+              className="socialIcon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={`./img/svg/socialNetworks/${item[0]}.svg`}
+                alt={`ссылка на ${item[0]}`}
+              />
+            </a>
+          ))
+          }
+        </div>
         <figure>
 
         <Carousel

@@ -1,32 +1,16 @@
 import React from "react";
 import {Button} from 'react-bootstrap';
+import {showList} from "../functions";
 import "./index.css";
 
-class ListButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-
-    this.showList = this.showList.bind(this);
-  }
-
-  showList() {
-    const sidebar = document.getElementById("sidebar");
-
-    sidebar.classList.add("active");
-  }
-
-  render() {
+function ListButton(props) {
     return (
       <Button
         variant="primary"
-        onClick={this.showList}>
+        onClick={showList}>
         Список адресов
       </Button>
     )
-  }
 }
 
 export default ListButton;
